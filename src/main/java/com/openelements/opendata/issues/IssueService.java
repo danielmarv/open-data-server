@@ -86,8 +86,7 @@ public class IssueService extends AbstractEntityBasedService<IssueDTO, Issue> {
         issue.setClosedAtInGitHub(closedAt);
         
         Issue savedIssue = issueRepository.save(issue);
-        
-        // Record metrics for new issues
+
         if (isNew) {
             metricService.recordMetric(author, org, repository, MetricType.ISSUE_CREATED, 1);
         }
