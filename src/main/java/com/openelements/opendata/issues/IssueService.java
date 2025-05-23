@@ -96,42 +96,42 @@ public class IssueService extends AbstractEntityBasedService<IssueDTO, Issue> {
             metricService.recordMetric(author, org, repository, MetricType.ISSUE_CREATED, 1);
         }
         
-        return getMapper().toDto(savedIssue);
+        return getMapper().entityToDto(savedIssue);
     }
     
     public List<IssueDTO> getIssuesByRepository(String org, String repository) {
         return issueRepository.findByOrgAndRepository(org, repository).stream()
-                .map(getMapper()::toDto)
+                .map(getMapper()::entityToDto)
                 .collect(Collectors.toList());
     }
     
     public List<IssueDTO> getOpenIssuesByRepository(String org, String repository) {
         return issueRepository.findByOrgAndRepositoryAndOpen(org, repository, true).stream()
-                .map(getMapper()::toDto)
+                .map(getMapper()::entityToDto)
                 .collect(Collectors.toList());
     }
     
     public List<IssueDTO> getIssuesByAuthor(String author) {
         return issueRepository.findByAuthor(author).stream()
-                .map(getMapper()::toDto)
+                .map(getMapper()::entityToDto)
                 .collect(Collectors.toList());
     }
     
     public List<IssueDTO> getIssuesByAssignee(String assignee) {
         return issueRepository.findByAssignee(assignee).stream()
-                .map(getMapper()::toDto)
+                .map(getMapper()::entityToDto)
                 .collect(Collectors.toList());
     }
     
     public List<IssueDTO> getIssuesByLabel(String label) {
         return issueRepository.findByLabel(label).stream()
-                .map(getMapper()::toDto)
+                .map(getMapper()::entityToDto)
                 .collect(Collectors.toList());
     }
     
     public List<IssueDTO> getIssuesByRepositoryAndLabel(String org, String repository, String label) {
         return issueRepository.findByOrgAndRepositoryAndLabel(org, repository, label).stream()
-                .map(getMapper()::toDto)
+                .map(getMapper()::entityToDto)
                 .collect(Collectors.toList());
     }
     
@@ -164,7 +164,7 @@ public class IssueService extends AbstractEntityBasedService<IssueDTO, Issue> {
                     return List.<Issue>of();
                 })
                 .flatMap(List::stream)
-                .map(getMapper()::toDto)
+                .map(getMapper()::entityToDto)
                 .collect(Collectors.toList());
     }
 }
