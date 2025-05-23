@@ -58,13 +58,10 @@ public class IssueService extends AbstractEntityBasedService<IssueDTO, Issue> {
             issue = existingIssue.get();
 
             if (issue.isOpen() && !open) {
-                // Record metric for issue closed
                 metricService.recordMetric(author, org, repository, MetricType.ISSUE_CLOSED, 1);
             }
-            
-            // Check if comment count increased
+
             if (issue.getCommentCount() < commentCount) {
-                // Record metric for new comments
                 int newComments = commentCount - issue.getCommentCount();
                 metricService.recordMetric(author, org, repository, MetricType.ISSUE_COMMENTS, newComments);
             }
