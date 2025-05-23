@@ -56,8 +56,7 @@ public class IssueService extends AbstractEntityBasedService<IssueDTO, Issue> {
         
         if (existingIssue.isPresent()) {
             issue = existingIssue.get();
-            
-            // Check if issue was just closed
+
             if (issue.isOpen() && !open) {
                 // Record metric for issue closed
                 metricService.recordMetric(author, org, repository, MetricType.ISSUE_CLOSED, 1);
