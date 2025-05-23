@@ -20,7 +20,7 @@ public interface IssueMapper extends DtoMapper<IssueDTO, Issue> {
     @Override
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "uuid", ignore = true)  // Ignore uuid to avoid ambiguity
+    @Mapping(target = "uuid", ignore = true)
     @Mapping(target = "assignee", source = "assignee")
     @Mapping(target = "author", source = "author")
     @Mapping(target = "body", source = "body")
